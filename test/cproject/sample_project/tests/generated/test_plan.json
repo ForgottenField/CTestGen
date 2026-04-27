@@ -1,0 +1,181 @@
+{
+  "project_root": "D:\\Codex\\LLM4TG\\sample_project",
+  "generated_cases": 17,
+  "functions": {
+    "parse_sensor_line": [
+      {
+        "function": "parse_sensor_line",
+        "name": "line_ok",
+        "call": "parse_sensor_line(\"id=1;reading=22;tag=ok\", &record)",
+        "expect": "0",
+        "objective": "normal line"
+      },
+      {
+        "function": "parse_sensor_line",
+        "name": "line_missing_field",
+        "call": "parse_sensor_line(\"id=1;tag=ok\", &record)",
+        "expect": "-7",
+        "objective": "missing reading"
+      },
+      {
+        "function": "parse_sensor_line",
+        "name": "line_bad_token",
+        "call": "parse_sensor_line(\"id=1;reading=22;oops=1\", &record)",
+        "expect": "-6",
+        "objective": "unexpected key"
+      }
+    ],
+    "classify_record": [
+      {
+        "function": "classify_record",
+        "name": "class_low",
+        "call": "classify_record(&record_low)",
+        "expect": "0",
+        "objective": "low threshold"
+      },
+      {
+        "function": "classify_record",
+        "name": "class_high",
+        "call": "classify_record(&record_high)",
+        "expect": "2",
+        "objective": "high threshold"
+      },
+      {
+        "function": "classify_record",
+        "name": "class_mid_even_tag",
+        "call": "classify_record(&record_mid)",
+        "expect": "1",
+        "objective": "mid-path parity"
+      }
+    ],
+    "parse_payload_packet": [
+      {
+        "function": "parse_payload_packet",
+        "name": "packet_ok",
+        "call": "parse_payload_packet(ok_payload, ok_payload_len, out_records, 4, &out_count)",
+        "expect": "0",
+        "objective": "end-to-end parse"
+      },
+      {
+        "function": "parse_payload_packet",
+        "name": "packet_decode_fail",
+        "call": "parse_payload_packet(bad_payload, bad_payload_len, out_records, 4, &out_count)",
+        "expect": "-2",
+        "objective": "third-party decode failure path"
+      }
+    ],
+    "clamp_int": [
+      {
+        "function": "clamp_int",
+        "name": "low_clamp",
+        "call": "clamp_int(-5, 0, 10)",
+        "expect": "0",
+        "objective": "lower bound"
+      },
+      {
+        "function": "clamp_int",
+        "name": "mid_value",
+        "call": "clamp_int(6, 0, 10)",
+        "expect": "6",
+        "objective": "middle"
+      },
+      {
+        "function": "clamp_int",
+        "name": "high_clamp",
+        "call": "clamp_int(30, 0, 10)",
+        "expect": "10",
+        "objective": "upper bound"
+      }
+    ],
+    "parse_positive_int": [
+      {
+        "function": "parse_positive_int",
+        "name": "parse_ok",
+        "call": "parse_positive_int(\"123\", &tmp)",
+        "expect": "0",
+        "objective": "valid digits"
+      },
+      {
+        "function": "parse_positive_int",
+        "name": "parse_bad_char",
+        "call": "parse_positive_int(\"12a\", &tmp)",
+        "expect": "-2",
+        "objective": "reject nondigit"
+      },
+      {
+        "function": "parse_positive_int",
+        "name": "parse_overflow",
+        "call": "parse_positive_int(\"9999999\", &tmp)",
+        "expect": "-3",
+        "objective": "overflow guard"
+      }
+    ],
+    "split_kv": [
+      {
+        "function": "split_kv",
+        "name": "kv_ok",
+        "call": "split_kv(\"id=12\", key, sizeof(key), value, sizeof(value))",
+        "expect": "0",
+        "objective": "normal kv"
+      },
+      {
+        "function": "split_kv",
+        "name": "kv_missing_eq",
+        "call": "split_kv(\"id12\", key, sizeof(key), value, sizeof(value))",
+        "expect": "-2",
+        "objective": "missing separator"
+      },
+      {
+        "function": "split_kv",
+        "name": "kv_empty_value",
+        "call": "split_kv(\"id=\", key, sizeof(key), value, sizeof(value))",
+        "expect": "-2",
+        "objective": "empty value"
+      }
+    ]
+  },
+  "symbolic_inputs_path": "D:\\Codex\\LLM4TG\\sample_project\\tests\\generated\\symbolic_inputs.json",
+  "symbolic_input_cases": {
+    "decode_rle_frame": 4,
+    "parse_sensor_line": 4,
+    "classify_record": 2,
+    "parse_payload_packet": 6,
+    "tp_rle_decompress": 1,
+    "clamp_int": 6,
+    "ascii_sum": 2,
+    "parse_positive_int": 4,
+    "split_kv": 6
+  },
+  "csa_reports": {},
+  "estimated_branch_coverage": 58.62,
+  "third_party_summary": {
+    "tp_rle_decompress": {
+      "precision": "coarse",
+      "confidence": 0.65,
+      "preconditions": [
+        "arg0 != NULL",
+        "len(arg0) > 0"
+      ],
+      "postconditions": [
+        "ret in {0, -1}"
+      ],
+      "memory_side_effects": [],
+      "memory_risk_patterns": [],
+      "sanitizer_oracles": []
+    },
+    "mz_stub_rle_decompress": {
+      "precision": "coarse",
+      "confidence": 0.65,
+      "preconditions": [
+        "arg0 != NULL",
+        "len(arg0) > 0"
+      ],
+      "postconditions": [
+        "ret in {0, -1}"
+      ],
+      "memory_side_effects": [],
+      "memory_risk_patterns": [],
+      "sanitizer_oracles": []
+    }
+  }
+}

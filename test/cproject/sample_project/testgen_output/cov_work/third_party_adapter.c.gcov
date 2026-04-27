@@ -1,0 +1,20 @@
+        -:    0:Source:/home/yanghq/csa-testgen/test/cproject/sample_project/src/third_party_adapter.c
+        -:    0:Graph:test_cov-third_party_adapter.gcno
+        -:    0:Data:test_cov-third_party_adapter.gcda
+        -:    0:Runs:4
+        -:    1:#include "third_party_adapter.h"
+        -:    2:
+        -:    3:#include "miniz_stub.h"
+        -:    4:
+function tp_rle_decompress called 32 returned 100% blocks executed 100%
+       32:    5:int tp_rle_decompress(
+        -:    6:    const uint8_t *compressed,
+        -:    7:    size_t compressed_len,
+        -:    8:    uint8_t *out,
+        -:    9:    size_t out_cap,
+        -:   10:    size_t *out_len
+        -:   11:) {
+       32:   12:    return mz_stub_rle_decompress(compressed, compressed_len, out, out_cap, out_len);
+call    0 returned 32
+        -:   13:}
+        -:   14:

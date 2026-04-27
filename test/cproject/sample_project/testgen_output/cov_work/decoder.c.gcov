@@ -1,0 +1,44 @@
+        -:    0:Source:/home/yanghq/csa-testgen/test/cproject/sample_project/src/decoder.c
+        -:    0:Graph:test_cov-decoder.gcno
+        -:    0:Data:test_cov-decoder.gcda
+        -:    0:Runs:4
+        -:    1:#include "decoder.h"
+        -:    2:
+        -:    3:#include "third_party_adapter.h"
+        -:    4:
+function decode_rle_frame called 44 returned 100% blocks executed 92%
+       44:    5:int decode_rle_frame(
+        -:    6:    const uint8_t *compressed,
+        -:    7:    size_t compressed_len,
+        -:    8:    char *decoded_text,
+        -:    9:    size_t decoded_cap,
+        -:   10:    size_t *decoded_len
+        -:   11:) {
+       44:   12:    if (decoded_text == 0 || decoded_len == 0) {
+branch  0 taken 36 (fallthrough)
+branch  1 taken 8
+branch  2 taken 4 (fallthrough)
+branch  3 taken 32
+       12:   13:        return -1;
+        -:   14:    }
+       32:   15:    size_t out_len = 0;
+       32:   16:    int rc = tp_rle_decompress(
+branch  0 taken 28 (fallthrough)
+branch  1 taken 4
+call    2 returned 32
+        -:   17:        compressed,
+        -:   18:        compressed_len,
+        -:   19:        (uint8_t *)decoded_text,
+        -:   20:        decoded_cap > 0 ? decoded_cap - 1 : 0,
+        -:   21:        &out_len
+        -:   22:    );
+       32:   23:    if (rc != 0) {
+branch  0 taken 32 (fallthrough)
+branch  1 taken 0
+       32:   24:        return -2;
+        -:   25:    }
+    #####:   26:    decoded_text[out_len] = '\0';
+    #####:   27:    *decoded_len = out_len;
+    #####:   28:    return 0;
+        -:   29:}
+        -:   30:

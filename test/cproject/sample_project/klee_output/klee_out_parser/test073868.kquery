@@ -1,0 +1,52 @@
+array choice[4] : w32 -> w8 = symbolic
+array line[64] : w32 -> w8 = symbolic
+(query [(Eq 0
+             (ReadLSB w32 0 choice))
+         (Eq 0 (Read w8 63 line))
+         (Eq false
+             (Eq 0 N0:(Read w8 11 line)))
+         (Eq false
+             (Eq 0 (Read w8 13 line)))
+         (Eq false
+             (Eq 0 (Read w8 14 line)))
+         (Eq false
+             (Eq 0 (Read w8 15 line)))
+         (Eq false
+             (Eq 0 (Read w8 16 line)))
+         (Eq false
+             (Eq 0 (Read w8 17 line)))
+         (Eq false
+             (Eq 0 (Read w8 18 line)))
+         (Eq false
+             (Eq 0 (Read w8 19 line)))
+         (Eq false
+             (Eq 0 (Read w8 20 line)))
+         (Eq false
+             (Eq 0 (Read w8 21 line)))
+         (Eq false
+             (Eq 0 (Read w8 22 line)))
+         (Eq false
+             (Eq 0 (Read w8 23 line)))
+         (Eq false
+             (Eq 0 (Read w8 24 line)))
+         (Eq false
+             (Eq 0 (Read w8 25 line)))
+         (Eq false
+             (Eq 0 (Read w8 26 line)))
+         (Eq false
+             (Eq 0 (Read w8 27 line)))
+         (Eq 0 (Read w8 28 line))
+         (Eq 59 (Read w8 0 line))
+         (Eq 59 (Read w8 1 line))
+         (Eq 59 (Read w8 2 line))
+         (Eq 59 (Read w8 3 line))
+         (Eq 59 (Read w8 4 line))
+         (Eq 59 (Read w8 5 line))
+         (Eq 59 (Read w8 6 line))
+         (Eq 59 (Read w8 7 line))
+         (Eq 59 (Read w8 8 line))
+         (Eq false (Eq 59 N0))
+         (Eq 59 (Read w8 12 line))
+         (Eq 114 (Read w8 9 line))
+         (Eq 101 (Read w8 10 line))]
+        false)

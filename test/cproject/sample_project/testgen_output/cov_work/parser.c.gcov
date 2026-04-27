@@ -1,0 +1,210 @@
+        -:    0:Source:/home/yanghq/csa-testgen/test/cproject/sample_project/src/parser.c
+        -:    0:Graph:test_cov-parser.gcno
+        -:    0:Data:test_cov-parser.gcda
+        -:    0:Runs:4
+        -:    1:#include "parser.h"
+        -:    2:
+        -:    3:#include <string.h>
+        -:    4:
+        -:    5:#include "decoder.h"
+        -:    6:#include "utils.h"
+        -:    7:
+function parse_field called 0 returned 0% blocks executed 0%
+    #####:    8:static int parse_field(const char *token, const char *name, int *out_value) {
+        -:    9:    char key[32];
+        -:   10:    char value[64];
+    #####:   11:    int rc = split_kv(token, key, sizeof(key), value, sizeof(value));
+call    0 never executed
+    #####:   12:    if (rc != 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   13:        return rc;
+        -:   14:    }
+    #####:   15:    if (strcmp(key, name) != 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   16:        return -4;
+        -:   17:    }
+    #####:   18:    return parse_positive_int(value, out_value);
+call    0 never executed
+        -:   19:}
+        -:   20:
+function parse_sensor_line called 32 returned 100% blocks executed 47%
+       32:   21:int parse_sensor_line(const char *line, SensorRecord *out_record) {
+       32:   22:    if (line == 0 || out_record == 0) {
+branch  0 taken 28 (fallthrough)
+branch  1 taken 4
+branch  2 taken 12 (fallthrough)
+branch  3 taken 16
+       16:   23:        return -1;
+        -:   24:    }
+        -:   25:
+        -:   26:    char local[128];
+       16:   27:    size_t n = strlen(line);
+       16:   28:    if (n == 0 || n >= sizeof(local)) {
+branch  0 taken 12 (fallthrough)
+branch  1 taken 4
+branch  2 taken 0 (fallthrough)
+branch  3 taken 12
+        4:   29:        return -2;
+        -:   30:    }
+       12:   31:    memcpy(local, line, n + 1);
+        -:   32:
+       12:   33:    char *save = 0;
+       12:   34:    char *tok = strtok_r(local, ";", &save);
+call    0 returned 12
+       12:   35:    int seen_id = 0;
+       12:   36:    int seen_reading = 0;
+       12:   37:    int seen_tag = 0;
+       12:   38:    while (tok != 0) {
+branch  0 taken 12
+branch  1 taken 0 (fallthrough)
+       12:   39:        if (strncmp(tok, "id=", 3) == 0) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 12
+    #####:   40:            if (parse_field(tok, "id", &out_record->id) != 0) {
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed
+    #####:   41:                return -3;
+        -:   42:            }
+    #####:   43:            seen_id = 1;
+       12:   44:        } else if (strncmp(tok, "reading=", 8) == 0) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 12
+    #####:   45:            if (parse_field(tok, "reading", &out_record->reading) != 0) {
+call    0 never executed
+branch  1 never executed (fallthrough)
+branch  2 never executed
+    #####:   46:                return -4;
+        -:   47:            }
+    #####:   48:            seen_reading = 1;
+       12:   49:        } else if (strncmp(tok, "tag=", 4) == 0) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 12
+    #####:   50:            size_t tag_len = strlen(tok + 4);
+    #####:   51:            if (tag_len >= sizeof(out_record->tag)) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   52:                return -5;
+        -:   53:            }
+    #####:   54:            memcpy(out_record->tag, tok + 4, tag_len + 1);
+    #####:   55:            seen_tag = 1;
+        -:   56:        } else {
+       12:   57:            return -6;
+        -:   58:        }
+    #####:   59:        tok = strtok_r(0, ";", &save);
+call    0 never executed
+        -:   60:    }
+        -:   61:
+    #####:   62:    if (!(seen_id && seen_reading && seen_tag)) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+branch  4 never executed (fallthrough)
+branch  5 never executed
+    #####:   63:        return -7;
+        -:   64:    }
+    #####:   65:    return 0;
+        -:   66:}
+        -:   67:
+function classify_record called 8 returned 100% blocks executed 36%
+        8:   68:int classify_record(const SensorRecord *record) {
+        8:   69:    if (record == 0) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 4
+        4:   70:        return -1;
+        -:   71:    }
+        4:   72:    if (record->reading < 20) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 0
+        4:   73:        return 0;
+        -:   74:    }
+    #####:   75:    if (record->reading > 80) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   76:        return 2;
+        -:   77:    }
+    #####:   78:    int score = ascii_sum(record->tag);
+call    0 never executed
+    #####:   79:    if (score < 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   80:        return -2;
+        -:   81:    }
+    #####:   82:    return (score % 2) == 0 ? 1 : 2;
+branch  0 never executed (fallthrough)
+branch  1 never executed
+        -:   83:}
+        -:   84:
+function parse_payload_packet called 44 returned 100% blocks executed 38%
+       44:   85:int parse_payload_packet(
+        -:   86:    const uint8_t *compressed,
+        -:   87:    size_t compressed_len,
+        -:   88:    SensorRecord *out_records,
+        -:   89:    size_t out_cap,
+        -:   90:    size_t *out_count
+        -:   91:) {
+       44:   92:    if (compressed == 0 || out_records == 0 || out_count == 0) {
+branch  0 taken 36 (fallthrough)
+branch  1 taken 8
+branch  2 taken 28 (fallthrough)
+branch  3 taken 8
+branch  4 taken 4 (fallthrough)
+branch  5 taken 24
+       20:   93:        return -1;
+        -:   94:    }
+        -:   95:
+        -:   96:    char decoded[512];
+       24:   97:    size_t decoded_len = 0;
+       24:   98:    int rc = decode_rle_frame(compressed, compressed_len, decoded, sizeof(decoded), &decoded_len);
+call    0 returned 24
+       24:   99:    if (rc != 0) {
+branch  0 taken 24 (fallthrough)
+branch  1 taken 0
+       24:  100:        return -2;
+        -:  101:    }
+        -:  102:
+    #####:  103:    size_t count = 0;
+    #####:  104:    const char *cursor = decoded;
+    #####:  105:    while (*cursor != '\0') {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  106:        const char *line_end = strchr(cursor, '\n');
+    #####:  107:        size_t line_len = (line_end != 0) ? (size_t)(line_end - cursor) : strlen(cursor);
+branch  0 never executed (fallthrough)
+branch  1 never executed
+        -:  108:
+    #####:  109:        if (count >= out_cap) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  110:            return -3;
+        -:  111:        }
+        -:  112:
+        -:  113:        char line_buf[64];
+        -:  114:        /* Intentional bug: no upper bound check for line_len before memcpy. */
+    #####:  115:        memcpy(line_buf, cursor, line_len);
+    #####:  116:        line_buf[line_len] = '\0';
+        -:  117:
+    #####:  118:        rc = parse_sensor_line(line_buf, &out_records[count]);
+call    0 never executed
+    #####:  119:        if (rc != 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  120:            return -4;
+        -:  121:        }
+    #####:  122:        ++count;
+        -:  123:
+    #####:  124:        if (line_end == 0) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  125:            break;
+        -:  126:        }
+    #####:  127:        cursor = line_end + 1;
+        -:  128:    }
+        -:  129:
+    #####:  130:    *out_count = count;
+    #####:  131:    return 0;
+        -:  132:}
+        -:  133:

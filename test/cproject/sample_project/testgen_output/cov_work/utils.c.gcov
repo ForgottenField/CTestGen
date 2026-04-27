@@ -1,0 +1,117 @@
+        -:    0:Source:/home/yanghq/csa-testgen/test/cproject/sample_project/src/utils.c
+        -:    0:Graph:test_cov-utils.gcno
+        -:    0:Data:test_cov-utils.gcda
+        -:    0:Runs:4
+        -:    1:#include "utils.h"
+        -:    2:
+        -:    3:#include <ctype.h>
+        -:    4:#include <string.h>
+        -:    5:
+function clamp_int called 16 returned 100% blocks executed 100%
+       16:    6:int clamp_int(int value, int low, int high) {
+       16:    7:    if (low > high) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 12
+        4:    8:        return value;
+        -:    9:    }
+       12:   10:    if (value < low) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 8
+        4:   11:        return low;
+        -:   12:    }
+        8:   13:    if (value > high) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 4
+        4:   14:        return high;
+        -:   15:    }
+        4:   16:    return value;
+        -:   17:}
+        -:   18:
+function ascii_sum called 20 returned 100% blocks executed 100%
+       20:   19:int ascii_sum(const char *s) {
+       20:   20:    if (s == NULL) {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 16
+        4:   21:        return -1;
+        -:   22:    }
+       16:   23:    int total = 0;
+       40:   24:    for (size_t i = 0; s[i] != '\0'; ++i) {
+branch  0 taken 24
+branch  1 taken 16 (fallthrough)
+       24:   25:        total += (unsigned char)s[i];
+        -:   26:    }
+       16:   27:    return total;
+        -:   28:}
+        -:   29:
+function parse_positive_int called 63 returned 100% blocks executed 100%
+       63:   30:int parse_positive_int(const char *s, int *out_value) {
+       63:   31:    if (s == NULL || out_value == NULL || *s == '\0') {
+branch  0 taken 55 (fallthrough)
+branch  1 taken 8
+branch  2 taken 51 (fallthrough)
+branch  3 taken 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 47
+       16:   32:        return -1;
+        -:   33:    }
+       47:   34:    int value = 0;
+      137:   35:    for (size_t i = 0; s[i] != '\0'; ++i) {
+branch  0 taken 125
+branch  1 taken 12 (fallthrough)
+      125:   36:        if (!isdigit((unsigned char)s[i])) {
+branch  0 taken 32 (fallthrough)
+branch  1 taken 93
+       32:   37:            return -2;
+        -:   38:        }
+       93:   39:        value = (value * 10) + (s[i] - '0');
+       93:   40:        if (value > 1000000) {
+branch  0 taken 3 (fallthrough)
+branch  1 taken 90
+        3:   41:            return -3;
+        -:   42:        }
+        -:   43:    }
+       12:   44:    *out_value = value;
+       12:   45:    return 0;
+        -:   46:}
+        -:   47:
+function split_kv called 60 returned 100% blocks executed 67%
+       60:   48:int split_kv(const char *input, char *key, size_t key_cap, char *value, size_t value_cap) {
+       60:   49:    if (input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0) {
+branch  0 taken 44 (fallthrough)
+branch  1 taken 16
+branch  2 taken 36 (fallthrough)
+branch  3 taken 8
+branch  4 taken 32 (fallthrough)
+branch  5 taken 4
+branch  6 taken 28 (fallthrough)
+branch  7 taken 4
+branch  8 taken 4 (fallthrough)
+branch  9 taken 24
+       36:   50:        return -1;
+        -:   51:    }
+       24:   52:    const char *eq = strchr(input, '=');
+      24*:   53:    if (eq == NULL || eq == input || eq[1] == '\0') {
+branch  0 taken 4 (fallthrough)
+branch  1 taken 20
+branch  2 taken 0 (fallthrough)
+branch  3 taken 4
+branch  4 never executed (fallthrough)
+branch  5 never executed
+       24:   54:        return -2;
+        -:   55:    }
+    #####:   56:    size_t key_len = (size_t)(eq - input);
+    #####:   57:    size_t value_len = strlen(eq + 1);
+    #####:   58:    if (key_len + 1 > key_cap || value_len + 1 > value_cap) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:   59:        return -3;
+        -:   60:    }
+    #####:   61:    memcpy(key, input, key_len);
+    #####:   62:    key[key_len] = '\0';
+    #####:   63:    memcpy(value, eq + 1, value_len);
+    #####:   64:    value[value_len] = '\0';
+    #####:   65:    return 0;
+        -:   66:}
+        -:   67:

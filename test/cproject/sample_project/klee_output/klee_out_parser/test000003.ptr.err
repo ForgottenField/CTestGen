@@ -1,0 +1,19 @@
+Error: memory error: out of bound pointer
+File: test/cproject/sample_project/vendor/miniz/src/miniz_stub.c
+Line: 20
+assembly.ll line: 9696
+State: 18
+Stack: 
+	#000009696 in mz_stub_rle_decompress(compressed=136186653835264, compressed_len=symbolic, out=136247857119232, out_cap=511, out_len=136203967922176) at test/cproject/sample_project/vendor/miniz/src/miniz_stub.c:20
+	#100009610 in tp_rle_decompress(compressed=136186653835264, compressed_len=symbolic, out=136247857119232, out_cap=511, out_len=136203967922176) at test/cproject/sample_project/src/third_party_adapter.c:12
+	#200009070 in decode_rle_frame(compressed=136186653835264, compressed_len=symbolic, decoded_text=136247857119232, decoded_cap=512, decoded_len=136206786494464) at test/cproject/sample_project/src/decoder.c:16
+	#300008903 in parse_payload_packet(compressed=136186653835264, compressed_len=symbolic, out_records=136236045959168, out_cap=symbolic, out_count=136207591800832) at test/cproject/sample_project/src/parser.c:98
+	#400008844 in klee_test_parse_payload_packet() at test/cproject/sample_project/klee_output/parser_klee_harness.c:47
+	#500008748 in __klee_posix_wrapped_main() at test/cproject/sample_project/klee_output/parser_klee_harness.c:58
+	#600007040 in __user_main(1, 137441321156608, 137441321156624) at klee/runtime/POSIX/klee_init_env.c:244
+	#700000523 in __uClibc_main(137425475076096, 1, 137441321156608, 0, 0, 0, 0) at libc/misc/internals/__uClibc_main.c:401
+	#800000688 in main(1, 137441321156608)
+Info: 
+	address: 136186653835265
+	next: object at 136186653835264 of size 1
+		MO7853[1] allocated at klee_test_parse_payload_packet():  %_obj_compressed = alloca i8, align 1

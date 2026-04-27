@@ -1,0 +1,265 @@
+array choice[4] : w32 -> w8 = symbolic
+array const_arr1[768] : w32 -> w8 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 3 32 2 32 2 32 2 32 2 32 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 1 96 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 4 192 8 216 8 216 8 216 8 216 8 216 8 216 8 216 8 216 8 216 8 216 4 192 4 192 4 192 4 192 4 192 4 192 4 192 8 213 8 213 8 213 8 213 8 213 8 213 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 8 197 4 192 4 192 4 192 4 192 4 192 4 192 8 214 8 214 8 214 8 214 8 214 8 214 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 8 198 4 192 4 192 4 192 4 192 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+array s[64] : w32 -> w8 = symbolic
+(query [(Eq 2
+             (ReadLSB w32 0 choice))
+         (Eq 0 (Read w8 63 s))
+         (Eq false
+             (Eq 0 N0:(Read w8 0 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N1:(Extract w32 0 (Add w64 256
+                                                                            (Mul w64 2
+                                                                                     (SExt w64 (ZExt w32 N0))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N2:(Read w8 1 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N3:(Extract w32 0 (Add w64 256
+                                                                            (Mul w64 2
+                                                                                     (SExt w64 (ZExt w32 N2))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N4:(Read w8 2 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N5:(Extract w32 0 (Add w64 256
+                                                                            (Mul w64 2
+                                                                                     (SExt w64 (ZExt w32 N4))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N6:(Read w8 3 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N7:(Extract w32 0 (Add w64 256
+                                                                            (Mul w64 2
+                                                                                     (SExt w64 (ZExt w32 N6))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N8:(Read w8 4 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N9:(Extract w32 0 (Add w64 256
+                                                                            (Mul w64 2
+                                                                                     (SExt w64 (ZExt w32 N8))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N10:(Read w8 5 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N11:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N10))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Eq 0 N12:(Read w8 6 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N13:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N12))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N14:(Add w32 4294967248
+                               (Add w32 (Mul w32 10
+                                                 (Add w32 4294967248
+                                                          (Add w32 (Mul w32 10
+                                                                            (Add w32 4294967248
+                                                                                     (Add w32 (Mul w32 10
+                                                                                                       (Add w32 4294967248
+                                                                                                                (Add w32 (Mul w32 10
+                                                                                                                                  (Add w32 4294967248
+                                                                                                                                           (Add w32 (Mul w32 10
+                                                                                                                                                             (Add w32 4294967248
+                                                                                                                                                                      (Add w32 (Mul w32 10
+                                                                                                                                                                                        (Add w32 4294967248 (SExt w32 N0)))
+                                                                                                                                                                               (SExt w32 N2))))
+                                                                                                                                                    (SExt w32 N4))))
+                                                                                                                         (SExt w32 N6))))
+                                                                                              (SExt w32 N8))))
+                                                                   (SExt w32 N10))))
+                                        (SExt w32 N12)))))
+         (Eq false
+             (Eq 0 N15:(Read w8 7 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N16:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N15))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N17:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N14) (SExt w32 N15)))))
+         (Eq false
+             (Eq 0 N18:(Read w8 8 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N19:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N18))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N20:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N17) (SExt w32 N18)))))
+         (Eq false
+             (Eq 0 N21:(Read w8 9 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N22:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N21))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N23:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N20) (SExt w32 N21)))))
+         (Eq false
+             (Eq 0 N24:(Read w8 10 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N25:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N24))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N26:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N23) (SExt w32 N24)))))
+         (Eq false
+             (Eq 0 N27:(Read w8 11 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N28:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N27))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N29:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N26) (SExt w32 N27)))))
+         (Eq false
+             (Eq 0 N30:(Read w8 12 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N31:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N30))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N32:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N29) (SExt w32 N30)))))
+         (Eq false
+             (Eq 0 N33:(Read w8 13 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N34:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N33))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N35:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N32) (SExt w32 N33)))))
+         (Eq false
+             (Eq 0 N36:(Read w8 14 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N37:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N36))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N38:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N35) (SExt w32 N36)))))
+         (Eq false
+             (Eq 0 N39:(Read w8 15 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N40:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N39))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N41:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N38) (SExt w32 N39)))))
+         (Eq false
+             (Eq 0 N42:(Read w8 16 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N43:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N42))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N44:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N41) (SExt w32 N42)))))
+         (Eq false
+             (Eq 0 N45:(Read w8 17 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N46:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N45))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N47:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N44) (SExt w32 N45)))))
+         (Eq false
+             (Eq 0 N48:(Read w8 18 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N49:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N48))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N50:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N47) (SExt w32 N48)))))
+         (Eq false
+             (Eq 0 N51:(Read w8 19 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N52:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N51))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N53:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N50) (SExt w32 N51)))))
+         (Eq false
+             (Eq 0 N54:(Read w8 20 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N55:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N54))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  N56:(Add w32 4294967248
+                               (Add w32 (Mul w32 10 N53) (SExt w32 N54)))))
+         (Eq false
+             (Eq 0 N57:(Read w8 21 s)))
+         (Eq false
+             (Eq 0
+                 (And w32 (ZExt w32 (ReadLSB w16 N58:(Extract w32 0 (Add w64 256
+                                                                             (Mul w64 2
+                                                                                      (SExt w64 (ZExt w32 N57))))) const_arr1))
+                          2048)))
+         (Eq false
+             (Slt 1000000
+                  (Add w32 4294967248
+                           (Add w32 (Mul w32 10 N56) (SExt w32 N57)))))
+         (Eq 0 (Read w8 22 s))]
+        false)

@@ -1,0 +1,528 @@
+{
+  "decode_rle_frame": [
+    {
+      "case_id": "decode_rle_frame_ptr_0",
+      "function": "decode_rle_frame",
+      "constraints": [
+        "decoded_text == NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "decoded_text": "NULL",
+        "decoded_cap": "1",
+        "decoded_len": "&obj"
+      },
+      "expected_path": "then(decoded_text == 0 || decoded_len == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "decode_rle_frame_ptr_1",
+      "function": "decode_rle_frame",
+      "constraints": [
+        "decoded_text != NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "decoded_text": "\"seed\"",
+        "decoded_cap": "1",
+        "decoded_len": "&obj"
+      },
+      "expected_path": "else(decoded_text == 0 || decoded_len == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "decode_rle_frame_ptr_2",
+      "function": "decode_rle_frame",
+      "constraints": [
+        "decoded_len == NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "decoded_text": "\"seed\"",
+        "decoded_cap": "1",
+        "decoded_len": "NULL"
+      },
+      "expected_path": "then(decoded_text == 0 || decoded_len == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "decode_rle_frame_ptr_3",
+      "function": "decode_rle_frame",
+      "constraints": [
+        "decoded_len != NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "decoded_text": "\"seed\"",
+        "decoded_cap": "1",
+        "decoded_len": "&obj"
+      },
+      "expected_path": "else(decoded_text == 0 || decoded_len == 0)",
+      "source": "heuristic"
+    }
+  ],
+  "parse_sensor_line": [
+    {
+      "case_id": "parse_sensor_line_ptr_0",
+      "function": "parse_sensor_line",
+      "constraints": [
+        "line == NULL"
+      ],
+      "model": {
+        "line": "NULL",
+        "out_record": "&obj"
+      },
+      "expected_path": "then(line == 0 || out_record == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_sensor_line_ptr_1",
+      "function": "parse_sensor_line",
+      "constraints": [
+        "line != NULL"
+      ],
+      "model": {
+        "line": "\"seed\"",
+        "out_record": "&obj"
+      },
+      "expected_path": "else(line == 0 || out_record == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_sensor_line_ptr_2",
+      "function": "parse_sensor_line",
+      "constraints": [
+        "out_record == NULL"
+      ],
+      "model": {
+        "line": "\"seed\"",
+        "out_record": "NULL"
+      },
+      "expected_path": "then(line == 0 || out_record == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_sensor_line_ptr_3",
+      "function": "parse_sensor_line",
+      "constraints": [
+        "out_record != NULL"
+      ],
+      "model": {
+        "line": "\"seed\"",
+        "out_record": "&obj"
+      },
+      "expected_path": "else(line == 0 || out_record == 0)",
+      "source": "heuristic"
+    }
+  ],
+  "classify_record": [
+    {
+      "case_id": "classify_record_ptr_0",
+      "function": "classify_record",
+      "constraints": [
+        "record == NULL"
+      ],
+      "model": {
+        "record": "NULL"
+      },
+      "expected_path": "then(record == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "classify_record_ptr_1",
+      "function": "classify_record",
+      "constraints": [
+        "record != NULL"
+      ],
+      "model": {
+        "record": "&obj"
+      },
+      "expected_path": "else(record == 0)",
+      "source": "heuristic"
+    }
+  ],
+  "parse_payload_packet": [
+    {
+      "case_id": "parse_payload_packet_ptr_0",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "compressed == NULL"
+      ],
+      "model": {
+        "compressed": "NULL",
+        "compressed_len": "1",
+        "out_records": "&obj",
+        "out_cap": "1",
+        "out_count": "&obj"
+      },
+      "expected_path": "then(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_payload_packet_ptr_1",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "compressed != NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out_records": "&obj",
+        "out_cap": "1",
+        "out_count": "&obj"
+      },
+      "expected_path": "else(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_payload_packet_ptr_2",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "out_records == NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out_records": "NULL",
+        "out_cap": "1",
+        "out_count": "&obj"
+      },
+      "expected_path": "then(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_payload_packet_ptr_3",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "out_records != NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out_records": "&obj",
+        "out_cap": "1",
+        "out_count": "&obj"
+      },
+      "expected_path": "else(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_payload_packet_ptr_4",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "out_count == NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out_records": "&obj",
+        "out_cap": "1",
+        "out_count": "NULL"
+      },
+      "expected_path": "then(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_payload_packet_ptr_5",
+      "function": "parse_payload_packet",
+      "constraints": [
+        "out_count != NULL"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out_records": "&obj",
+        "out_cap": "1",
+        "out_count": "&obj"
+      },
+      "expected_path": "else(compressed == 0 || out_records == 0 || out_count == 0)",
+      "source": "heuristic"
+    }
+  ],
+  "tp_rle_decompress": [
+    {
+      "case_id": "tp_rle_decompress_default_0",
+      "function": "tp_rle_decompress",
+      "constraints": [
+        "default-entry"
+      ],
+      "model": {
+        "compressed": "&obj",
+        "compressed_len": "1",
+        "out": "&obj",
+        "out_cap": "1",
+        "out_len": "&obj"
+      },
+      "expected_path": "default",
+      "source": "heuristic"
+    }
+  ],
+  "clamp_int": [
+    {
+      "case_id": "clamp_int_hz3_0",
+      "function": "clamp_int",
+      "constraints": [
+        "low > high == true"
+      ],
+      "model": {
+        "value": "1",
+        "low": "2",
+        "high": "1"
+      },
+      "expected_path": "then(low > high)",
+      "source": "heuristic-z3-fallback"
+    },
+    {
+      "case_id": "clamp_int_hz3_1",
+      "function": "clamp_int",
+      "constraints": [
+        "low > high == false"
+      ],
+      "model": {
+        "value": "1",
+        "low": "1",
+        "high": "2"
+      },
+      "expected_path": "else(low > high)",
+      "source": "heuristic-z3-fallback"
+    },
+    {
+      "case_id": "clamp_int_hz3_2",
+      "function": "clamp_int",
+      "constraints": [
+        "value < low == true"
+      ],
+      "model": {
+        "value": "1",
+        "low": "2",
+        "high": "1"
+      },
+      "expected_path": "then(value < low)",
+      "source": "heuristic-z3-fallback"
+    },
+    {
+      "case_id": "clamp_int_hz3_3",
+      "function": "clamp_int",
+      "constraints": [
+        "value < low == false"
+      ],
+      "model": {
+        "value": "2",
+        "low": "1",
+        "high": "1"
+      },
+      "expected_path": "else(value < low)",
+      "source": "heuristic-z3-fallback"
+    },
+    {
+      "case_id": "clamp_int_hz3_4",
+      "function": "clamp_int",
+      "constraints": [
+        "value > high == true"
+      ],
+      "model": {
+        "value": "2",
+        "low": "1",
+        "high": "1"
+      },
+      "expected_path": "then(value > high)",
+      "source": "heuristic-z3-fallback"
+    },
+    {
+      "case_id": "clamp_int_hz3_5",
+      "function": "clamp_int",
+      "constraints": [
+        "value > high == false"
+      ],
+      "model": {
+        "value": "1",
+        "low": "1",
+        "high": "2"
+      },
+      "expected_path": "else(value > high)",
+      "source": "heuristic-z3-fallback"
+    }
+  ],
+  "ascii_sum": [
+    {
+      "case_id": "ascii_sum_ptr_0",
+      "function": "ascii_sum",
+      "constraints": [
+        "s == NULL"
+      ],
+      "model": {
+        "s": "NULL"
+      },
+      "expected_path": "then(s == NULL)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "ascii_sum_ptr_1",
+      "function": "ascii_sum",
+      "constraints": [
+        "s != NULL"
+      ],
+      "model": {
+        "s": "\"seed\""
+      },
+      "expected_path": "else(s == NULL)",
+      "source": "heuristic"
+    }
+  ],
+  "parse_positive_int": [
+    {
+      "case_id": "parse_positive_int_ptr_0",
+      "function": "parse_positive_int",
+      "constraints": [
+        "s == NULL"
+      ],
+      "model": {
+        "s": "NULL",
+        "out_value": "&obj"
+      },
+      "expected_path": "then(s == NULL || out_value == NULL || *s == '\\0')",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_positive_int_ptr_1",
+      "function": "parse_positive_int",
+      "constraints": [
+        "s != NULL"
+      ],
+      "model": {
+        "s": "\"seed\"",
+        "out_value": "&obj"
+      },
+      "expected_path": "else(s == NULL || out_value == NULL || *s == '\\0')",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_positive_int_ptr_2",
+      "function": "parse_positive_int",
+      "constraints": [
+        "out_value == NULL"
+      ],
+      "model": {
+        "s": "\"seed\"",
+        "out_value": "NULL"
+      },
+      "expected_path": "then(s == NULL || out_value == NULL || *s == '\\0')",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "parse_positive_int_ptr_3",
+      "function": "parse_positive_int",
+      "constraints": [
+        "out_value != NULL"
+      ],
+      "model": {
+        "s": "\"seed\"",
+        "out_value": "&obj"
+      },
+      "expected_path": "else(s == NULL || out_value == NULL || *s == '\\0')",
+      "source": "heuristic"
+    }
+  ],
+  "split_kv": [
+    {
+      "case_id": "split_kv_ptr_0",
+      "function": "split_kv",
+      "constraints": [
+        "input == NULL"
+      ],
+      "model": {
+        "input": "NULL",
+        "key": "\"seed\"",
+        "key_cap": "1",
+        "value": "\"seed\"",
+        "value_cap": "1"
+      },
+      "expected_path": "then(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "split_kv_ptr_1",
+      "function": "split_kv",
+      "constraints": [
+        "input != NULL"
+      ],
+      "model": {
+        "input": "\"seed\"",
+        "key": "\"seed\"",
+        "key_cap": "1",
+        "value": "\"seed\"",
+        "value_cap": "1"
+      },
+      "expected_path": "else(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "split_kv_ptr_2",
+      "function": "split_kv",
+      "constraints": [
+        "key == NULL"
+      ],
+      "model": {
+        "input": "\"seed\"",
+        "key": "NULL",
+        "key_cap": "1",
+        "value": "\"seed\"",
+        "value_cap": "1"
+      },
+      "expected_path": "then(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "split_kv_ptr_3",
+      "function": "split_kv",
+      "constraints": [
+        "key != NULL"
+      ],
+      "model": {
+        "input": "\"seed\"",
+        "key": "\"seed\"",
+        "key_cap": "1",
+        "value": "\"seed\"",
+        "value_cap": "1"
+      },
+      "expected_path": "else(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "split_kv_ptr_4",
+      "function": "split_kv",
+      "constraints": [
+        "value == NULL"
+      ],
+      "model": {
+        "input": "\"seed\"",
+        "key": "\"seed\"",
+        "key_cap": "1",
+        "value": "NULL",
+        "value_cap": "1"
+      },
+      "expected_path": "then(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    },
+    {
+      "case_id": "split_kv_ptr_5",
+      "function": "split_kv",
+      "constraints": [
+        "value != NULL"
+      ],
+      "model": {
+        "input": "\"seed\"",
+        "key": "\"seed\"",
+        "key_cap": "1",
+        "value": "\"seed\"",
+        "value_cap": "1"
+      },
+      "expected_path": "else(input == NULL || key == NULL || value == NULL || key_cap == 0 || value_cap == 0)",
+      "source": "heuristic"
+    }
+  ]
+}

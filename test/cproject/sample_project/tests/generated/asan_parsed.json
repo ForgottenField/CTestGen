@@ -1,0 +1,32 @@
+{
+  "bug_type": "stack-buffer-overflow",
+  "access_type": "write",
+  "access_size": 1,
+  "crash_function": "parse_payload_packet",
+  "crash_file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+  "crash_line": 113,
+  "location_hint": "parse_payload_packet@D:/Codex/LLM4TG/sample_project/src/parser.c:113",
+  "raw_excerpt": "=================================================================\n==31452==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x0000007ffde8 at pc 0x7ff612341234 bp 0x0000007ffcc0 sp 0x0000007ffc98\nWRITE of size 1 at 0x0000007ffde8 thread T0\n    #0 0x7ff612341234 in parse_payload_packet D:/Codex/LLM4TG/sample_project/src/parser.c:113\n    #1 0x7ff612340111 in main D:/Codex/LLM4TG/sample_project/tests/generated/test_bug_repro.c:12\n    #2 0x7ff7ab123456 in __libc_start_main C:/crt/src/startup.c:76\n\nAddress 0x0000007ffde8 is located in stack of thread T0 at offset 104 in frame\n    #0 0x7ff612340f00 in parse_payload_packet D:/Codex/LLM4TG/sample_project/src/parser.c:84\n\n  This frame has 2 object(s):\n    [32, 96) 'line_buf' <== Memory access at offset 104 overflows this variable\n    [128, 640) 'decoded'\n\nSUMMARY: AddressSanitizer: stack-buffer-overflow D:/Codex/LLM4TG/sample_project/src/parser.c:113 in parse_payload_packet\nShadow bytes around the buggy address:\n  0x1000000ffba0: 00 00 00 00 00 00 00 00\n==31452==ABORTING\n",
+  "stack": [
+    {
+      "function": "parse_payload_packet",
+      "file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+      "line": 113
+    },
+    {
+      "function": "main",
+      "file": "D:/Codex/LLM4TG/sample_project/tests/generated/test_bug_repro.c",
+      "line": 12
+    },
+    {
+      "function": "__libc_start_main",
+      "file": "C:/crt/src/startup.c",
+      "line": 76
+    },
+    {
+      "function": "parse_payload_packet",
+      "file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+      "line": 84
+    }
+  ]
+}

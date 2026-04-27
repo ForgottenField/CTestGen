@@ -1,0 +1,9 @@
+array choice[4] : w32 -> w8 = symbolic
+array compressed_len[8] : w32 -> w8 = symbolic
+(query [(Eq 2
+             (ReadLSB w32 0 choice))
+         (Eq false
+             (Eq 0
+                 N0:(ReadLSB w64 0 compressed_len)))
+         (Eq 0 (URem w64 N0 2))]
+        false)

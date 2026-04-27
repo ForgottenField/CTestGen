@@ -1,0 +1,122 @@
+array choice[4] : w32 -> w8 = symbolic
+array s[64] : w32 -> w8 = symbolic
+(query [(Eq 1
+             (ReadLSB w32 0 choice))
+         (Eq 0 (Read w8 63 s))
+         (Eq false
+             (Eq 0 (Read w8 0 s)))
+         (Eq false
+             (Eq 0 (Read w8 1 s)))
+         (Eq false
+             (Eq 0 (Read w8 2 s)))
+         (Eq false
+             (Eq 0 (Read w8 3 s)))
+         (Eq false
+             (Eq 0 (Read w8 4 s)))
+         (Eq false
+             (Eq 0 (Read w8 5 s)))
+         (Eq false
+             (Eq 0 (Read w8 6 s)))
+         (Eq false
+             (Eq 0 (Read w8 7 s)))
+         (Eq false
+             (Eq 0 (Read w8 8 s)))
+         (Eq false
+             (Eq 0 (Read w8 9 s)))
+         (Eq false
+             (Eq 0 (Read w8 10 s)))
+         (Eq false
+             (Eq 0 (Read w8 11 s)))
+         (Eq false
+             (Eq 0 (Read w8 12 s)))
+         (Eq false
+             (Eq 0 (Read w8 13 s)))
+         (Eq false
+             (Eq 0 (Read w8 14 s)))
+         (Eq false
+             (Eq 0 (Read w8 15 s)))
+         (Eq false
+             (Eq 0 (Read w8 16 s)))
+         (Eq false
+             (Eq 0 (Read w8 17 s)))
+         (Eq false
+             (Eq 0 (Read w8 18 s)))
+         (Eq false
+             (Eq 0 (Read w8 19 s)))
+         (Eq false
+             (Eq 0 (Read w8 20 s)))
+         (Eq false
+             (Eq 0 (Read w8 21 s)))
+         (Eq false
+             (Eq 0 (Read w8 22 s)))
+         (Eq false
+             (Eq 0 (Read w8 23 s)))
+         (Eq false
+             (Eq 0 (Read w8 24 s)))
+         (Eq false
+             (Eq 0 (Read w8 25 s)))
+         (Eq false
+             (Eq 0 (Read w8 26 s)))
+         (Eq false
+             (Eq 0 (Read w8 27 s)))
+         (Eq false
+             (Eq 0 (Read w8 28 s)))
+         (Eq false
+             (Eq 0 (Read w8 29 s)))
+         (Eq false
+             (Eq 0 (Read w8 30 s)))
+         (Eq false
+             (Eq 0 (Read w8 31 s)))
+         (Eq false
+             (Eq 0 (Read w8 32 s)))
+         (Eq false
+             (Eq 0 (Read w8 33 s)))
+         (Eq false
+             (Eq 0 (Read w8 34 s)))
+         (Eq false
+             (Eq 0 (Read w8 35 s)))
+         (Eq false
+             (Eq 0 (Read w8 36 s)))
+         (Eq false
+             (Eq 0 (Read w8 37 s)))
+         (Eq false
+             (Eq 0 (Read w8 38 s)))
+         (Eq false
+             (Eq 0 (Read w8 39 s)))
+         (Eq false
+             (Eq 0 (Read w8 40 s)))
+         (Eq false
+             (Eq 0 (Read w8 41 s)))
+         (Eq false
+             (Eq 0 (Read w8 42 s)))
+         (Eq false
+             (Eq 0 (Read w8 43 s)))
+         (Eq false
+             (Eq 0 (Read w8 44 s)))
+         (Eq false
+             (Eq 0 (Read w8 45 s)))
+         (Eq false
+             (Eq 0 (Read w8 46 s)))
+         (Eq false
+             (Eq 0 (Read w8 47 s)))
+         (Eq false
+             (Eq 0 (Read w8 48 s)))
+         (Eq false
+             (Eq 0 (Read w8 49 s)))
+         (Eq false
+             (Eq 0 (Read w8 50 s)))
+         (Eq false
+             (Eq 0 (Read w8 51 s)))
+         (Eq false
+             (Eq 0 (Read w8 52 s)))
+         (Eq false
+             (Eq 0 (Read w8 53 s)))
+         (Eq false
+             (Eq 0 (Read w8 54 s)))
+         (Eq false
+             (Eq 0 (Read w8 55 s)))
+         (Eq false
+             (Eq 0 (Read w8 56 s)))
+         (Eq false
+             (Eq 0 (Read w8 57 s)))]
+        false)

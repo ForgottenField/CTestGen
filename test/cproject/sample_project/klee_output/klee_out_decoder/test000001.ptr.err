@@ -1,0 +1,18 @@
+Error: memory error: out of bound pointer
+File: test/cproject/sample_project/vendor/miniz/src/miniz_stub.c
+Line: 20
+assembly.ll line: 8979
+State: 4
+Stack: 
+	#000008979 in mz_stub_rle_decompress(compressed=137611083513856, compressed_len=symbolic, out=137660475637760, out_cap=0, out_len=137631216173056) at test/cproject/sample_project/vendor/miniz/src/miniz_stub.c:20
+	#100008893 in tp_rle_decompress(compressed=137611083513856, compressed_len=symbolic, out=137660475637760, out_cap=0, out_len=137631216173056) at test/cproject/sample_project/src/third_party_adapter.c:12
+	#200008844 in decode_rle_frame(compressed=137611083513856, compressed_len=symbolic, decoded_text=137660475637760, decoded_cap=symbolic, decoded_len=137632021479424) at test/cproject/sample_project/src/decoder.c:16
+	#300008783 in klee_test_decode_rle_frame() at test/cproject/sample_project/klee_output/decoder_klee_harness.c:26
+	#400008737 in __klee_posix_wrapped_main() at test/cproject/sample_project/klee_output/decoder_klee_harness.c:35
+	#500007039 in __user_main(1, 138865750835200, 138865750835216) at klee/runtime/POSIX/klee_init_env.c:244
+	#600000522 in __uClibc_main(138849904754688, 1, 138865750835200, 0, 0, 0, 0) at libc/misc/internals/__uClibc_main.c:401
+	#700000687 in main(1, 138865750835200)
+Info: 
+	address: 137611083513857
+	next: object at 137611083513856 of size 1
+		MO7854[1] allocated at klee_test_decode_rle_frame():  %_obj_compressed = alloca i8, align 1

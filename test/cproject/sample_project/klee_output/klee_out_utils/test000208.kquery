@@ -1,0 +1,40 @@
+array choice[4] : w32 -> w8 = symbolic
+array input[64] : w32 -> w8 = symbolic
+array key_cap[8] : w32 -> w8 = symbolic
+array value_cap[8] : w32 -> w8 = symbolic
+(query [(Eq 3
+             (ReadLSB w32 0 choice))
+         (Eq 0 (Read w8 63 input))
+         (Eq false
+             (Eq 0
+                 (ReadLSB w64 0 key_cap)))
+         (Eq false
+             (Eq 0
+                 (ReadLSB w64 0 value_cap)))
+         (Eq false
+             (Eq 61 N0:(Read w8 0 input)))
+         (Eq false (Eq 0 N0))
+         (Eq false
+             (Eq 61 N1:(Read w8 1 input)))
+         (Eq false (Eq 0 N1))
+         (Eq false
+             (Eq 61 N2:(Read w8 2 input)))
+         (Eq false (Eq 0 N2))
+         (Eq false
+             (Eq 61 N3:(Read w8 3 input)))
+         (Eq false (Eq 0 N3))
+         (Eq false
+             (Eq 61 N4:(Read w8 4 input)))
+         (Eq false (Eq 0 N4))
+         (Eq false
+             (Eq 61 N5:(Read w8 5 input)))
+         (Eq false (Eq 0 N5))
+         (Eq false
+             (Eq 61 N6:(Read w8 6 input)))
+         (Eq false (Eq 0 N6))
+         (Eq false
+             (Eq 61 N7:(Read w8 7 input)))
+         (Eq false (Eq 0 N7))
+         (Eq 61 (Read w8 8 input))
+         (Eq 0 (Read w8 9 input))]
+        false)

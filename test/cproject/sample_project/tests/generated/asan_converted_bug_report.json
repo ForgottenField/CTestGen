@@ -1,0 +1,42 @@
+{
+  "report_id": "ASAN-stack-buffer-overflow-113",
+  "title": "ASan detected stack-buffer-overflow",
+  "exception_type": "stack-buffer-overflow",
+  "sink": {
+    "function": "parse_payload_packet",
+    "file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+    "line": 113
+  },
+  "stack": [
+    {
+      "function": "parse_payload_packet",
+      "file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+      "line": 113,
+      "third_party": false
+    },
+    {
+      "function": "main",
+      "file": "D:/Codex/LLM4TG/sample_project/tests/generated/test_bug_repro.c",
+      "line": 12,
+      "third_party": false
+    },
+    {
+      "function": "__libc_start_main",
+      "file": "C:/crt/src/startup.c",
+      "line": 76,
+      "third_party": false
+    },
+    {
+      "function": "parse_payload_packet",
+      "file": "D:/Codex/LLM4TG/sample_project/src/parser.c",
+      "line": 84,
+      "third_party": false
+    }
+  ],
+  "hints": {
+    "line_len_at_least": "90",
+    "line_prefix": "id=1;reading=99;tag=",
+    "asan_access_size": "1",
+    "asan_access_type": "write"
+  }
+}
